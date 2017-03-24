@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>todos</title>
+		<link rel="stylesheet" type="text/css" href="css/base.css">
+		<link rel="stylesheet" type="text/css" href="css/index.css">
+		<script src="../vue.js"></script>
+	</head>
+
+	<body>
+		<section class="todoapp">
+			<div>
+				<header class="header">
+					<h1>todos</h1>
+					<input class="new-todo" placeholder="请输入内容" v-model='todo' @keyup.enter='addTodo' />
+				</header>
+				<section class="main">
+					<input class="toggle-all" type="checkbox" />
+					<ul class="todo-list">
+						<li v-for="item in filterList" :class="{completed:item.ischecked}">
+							<div class="view">
+								<input class="toggle" type="checkbox" v-model="item.ischecked" />
+								<label @dbclick="editTodo(item)">{{ item.title }}</label>
+								<button class="destroy" @click='delateTodo(item.id)'></button>
+							</div>
+							<input class="edit" v-model="item.title" />
+						</li>
+					</ul>
+				</section>
+				<footer class="footer" v-show="list.length">
+					<span class="todo-count">
+	            	<strong>
+                      {{unSelectedLen}}
+                    </strong>
+	            	<span>条未选中</span>
+					</span>
+					<ul class="filters">
+						<li>
+							<a href="#/all" :class='{selected:hash=="all"}'>All</a>
+						</li>
+						<li>
+							<a href="#/active" :class='{selected:hash=="active"}'>Active</a>
+						</li>
+						<li>
+							<a href="#/completed" :class='{selected:hash=="completed"}'>Completed</a>
+						</li>
+
+					</ul>
+					<button class="clear-completed">
+                    Clear completed
+                </button>
+				</footer>
+			</div>
+		</section>
+		<script src="./index.js"></script>
+		<script src="jquery-3.1.1.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+
+</html>
