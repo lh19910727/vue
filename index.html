@@ -17,7 +17,7 @@
 					<input class="new-todo" placeholder="请输入内容" v-model='todo' @keyup.enter='addTodo' />
 				</header>
 				<section class="main">
-					<input class="toggle-all" type="checkbox" />
+					<input class="toggle-all" type="checkbox" v-model="checkAll"/>
 					<ul class="todo-list">
 						<li v-for="item in filterList" :class="{completed:item.ischecked}">
 							<div class="view">
@@ -48,7 +48,7 @@
 						</li>
 
 					</ul>
-					<button class="clear-completed">
+					<button class="clear-completed" @click='clearComplate'>
                     Clear completed
                 </button>
 				</footer>

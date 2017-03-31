@@ -24,6 +24,18 @@ var vm=new Vue({
 		}
 	},
 	computed:{
+		checkAll:{
+			set(value){
+				this.list.forEach(function(item){
+					item.ischecked=value;
+				})
+			},
+			get(){
+				return this.list.filter(function(item){
+					return item.ischecked
+				}).length===this.list.length;
+			}
+		},
 		unSelectedLen:function(){
 			return this.list.filter(function(item){ 
 				return item.ischecked==false
@@ -48,6 +60,7 @@ var vm=new Vue({
 		}
 	},
 	methods:{
+		
 		addTodo(){
 			this.list.push({
 				title:this.todo,
@@ -64,8 +77,10 @@ var vm=new Vue({
 			})
 //			this.list = this.list.filter( (item) => item.id !== id );
 		},
-		editTodo(item){
-			
+		clearComplate(){
+			this.list=this.list.filter(function(item){
+				return !item.ischecked
+			})
 		}
 	}
 })
